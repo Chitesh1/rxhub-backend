@@ -1,0 +1,2721 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Swagger Doc For Rxhub",
+      "version": "1.0.0",
+      "title": "Swagger Rxhub",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "apiteam@swagger.io"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "tags": [
+      {
+        "name": "Admin",
+        "description": "Admin Module",
+        "externalDocs": {} 
+      },  
+      {
+        "name": "User",
+        "description": "User Module",
+        "externalDocs": {}
+      }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Login User",
+          "description": "Login",
+          "operationId": "login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              }
+            },
+            "description": "Login",
+            "required": true
+          },
+          "responses": {}
+        }
+      },
+      "/upload":{
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "uploads an file",
+          "description": "",
+          "operationId": "uploadFile",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "description": "file to upload",
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/password/change": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Change Password",
+          "description": "Change Password Api",
+          "operationId": "changePass",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePassword"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePassword"
+                }
+              }
+            },
+            "description": "Change Password",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/dashboard": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Dashboard",
+          "description": "Dashboard",
+          "operationId": "dashboard",
+          "parameters": [
+            {
+              "name": "language_id",
+              "in": "query",
+              "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "date",
+              "in": "query",
+              "description": "YYYY-MM-DD",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "designation_id",
+              "in": "query",
+              "description": "Designation Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "description": "0-month,1-year,2-week",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/user": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Listing",
+          "description": "User Listing",
+          "operationId": "userList",
+          "parameters": [
+            {
+              "name": "language_id",
+              "in": "query",
+              "description": "Language Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Block Or Unblock User",
+          "description": "Block Or Unblock User",
+          "operationId": "blockunuser",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdate"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdate"
+                }
+              }
+            },
+            "description": "Block Or Unblock User",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/user/{id}": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Detail",
+          "description": "User Detail",
+          "operationId": "userDetail",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "language_id",
+              "in": "query",
+              "description": "Language Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/user-all": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Listing",
+          "description": "User Listing",
+          "operationId": "userList",
+          "parameters": [
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/disease": {
+        "post": {
+          "tags": [
+            "Disease"
+          ],
+          "summary": "New Disease",
+          "description": "New Disease",
+          "operationId": "newdisease",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              }
+            },
+            "description": "Create New Disease",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Disease"
+          ],
+          "summary": "Disease List",
+          "description": "Disease List",
+          "operationId": "diseaseList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Disease"
+          ],
+          "summary": "Update Disease",
+          "description": "Update Disease",
+          "operationId": "updateDisease",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Disease"
+          ],
+          "summary": "Delete Disease",
+          "description": "Delete Disease",
+          "operationId": "deleteDisease",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/body-parts": {
+        "post": {
+          "tags": [
+            "Body Part"
+          ],
+          "summary": "Add New Body Part",
+          "description": "Add New Body Part",
+          "operationId": "bodyParts",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBodyParts"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBodyParts"
+                }
+              }
+            },
+            "description": "Add New Body Part",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Body Part"
+          ],
+          "summary": "Body Part List",
+          "description": "Body Part List",
+          "operationId": "bodypartlist",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "description": "Filter 1-Female 2-Male",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Body Part"
+          ],
+          "summary": "Update Body Parts",
+          "description": "Update Body Parts",
+          "operationId": "updateBodyParts",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBodyParts"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBodyParts"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Body Part"
+          ],
+          "summary": "Delete Body Parts",
+          "description": "Delete Body Parts",
+          "operationId": "deleteBody",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/system": {
+        "post": {
+          "tags": [
+            "System"
+          ],
+          "summary": "New Drug System",
+          "description": "New Drug System",
+          "operationId": "newdrugsystem",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              }
+            },
+            "description": "Create New Drug System",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "System"
+          ],
+          "summary": "Drug System List",
+          "description": "Drug System List",
+          "operationId": "systemList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "System"
+          ],
+          "summary": "Update Drug System",
+          "description": "Update Drug System",
+          "operationId": "updateDrugSystem",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "System"
+          ],
+          "summary": "Delete Drug System",
+          "description": "Delete Drug System",
+          "operationId": "deleteDrugSystem",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/generic": {
+        "post": {
+          "tags": [
+            "Generic"
+          ],
+          "summary": "New Drug Generic",
+          "description": "New Drug Generic",
+          "operationId": "newdruggeneric",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              }
+            },
+            "description": "New Drug Generic",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Generic"
+          ],
+          "summary": "Drug Generic List",
+          "description": "Drug Generic List",
+          "operationId": "genericList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Generic"
+          ],
+          "summary": "Update Drug Generic",
+          "description": "Update Drug Generic",
+          "operationId": "updateDrugGeneric",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Generic"
+          ],
+          "summary": "Delete Drug Generic",
+          "description": "Delete Drug Generic",
+          "operationId": "deleteDrugGeneric",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/brand": {
+        "post": {
+          "tags": [
+            "Brand"
+          ],
+          "summary": "New Drug Brand",
+          "description": "New Drug Brand",
+          "operationId": "newdrugbrand",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              }
+            },
+            "description": "New Drug Brand",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Brand"
+          ],
+          "summary": "Drug Brand List",
+          "description": "Drug Brand List",
+          "operationId": "brandList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Brand"
+          ],
+          "summary": "Update Drug Brand",
+          "description": "Update Drug Brand",
+          "operationId": "updateDrugBrand",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Brand"
+          ],
+          "summary": "Delete Drug Brand",
+          "description": "Delete Drug Brand",
+          "operationId": "deleteDrugBrand",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/category": {
+        "post": {
+          "tags": [
+            "Category"
+          ],
+          "summary": "New Category",
+          "description": "New Category",
+          "operationId": "newcategory",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              }
+            },
+            "description": "New Category",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Category"
+          ],
+          "summary": "Categories List",
+          "description": "Categories List",
+          "operationId": "categoryList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Category"
+          ],
+          "summary": "Update Category",
+          "description": "Update Category",
+          "operationId": "updateCategory",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Category"
+          ],
+          "summary": "Delete Category",
+          "description": "Delete Category",
+          "operationId": "deleteCategory",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/classification":{
+        "get": {
+          "tags": [
+            "Category"
+          ],
+          "summary": "Classification List",
+          "description": "Classification List",
+          "operationId": "classficationList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/designation": {
+        "post": {
+          "tags": [
+            "Designation"
+          ],
+          "summary": "New Designation",
+          "description": "New Designation",
+          "operationId": "newDesignation",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDesignation"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDesignation"
+                }
+              }
+            },
+            "description": "New Designation",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Designation"
+          ],
+          "summary": "Designation List",
+          "description": "Designation List",
+          "operationId": "designationList",
+          "parameters": [
+            {
+              "name": "cat_id",
+              "in": "query",
+              "description": "Designation Category Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Designation"
+          ],
+          "summary": "Designation Update",
+          "description": "Designation Update",
+          "operationId": "designationUpdate",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDesignation"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDesignation"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Designation"
+          ],
+          "summary": "Delete Designation",
+          "description": "Delete Designation",
+          "operationId": "deleteDesignation",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/designation-cat": {
+        "post": {
+          "tags": [
+            "Designation Category"
+          ],
+          "summary": "New Designation Category",
+          "description": "New Designation Category",
+          "operationId": "newDesignationCategory",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDisease"
+                }
+              }
+            },
+            "description": "New Category",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Designation Category"
+          ],
+          "summary": "Designation Categories List",
+          "description": "Designation Categories List",
+          "operationId": "designationCategoriesList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Designation Category"
+          ],
+          "summary": "Category Designation Update",
+          "description": "Category Designation Update",
+          "operationId": "designationCategoryUpdate",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Designation Category"
+          ],
+          "summary": "Delete Designation Category",
+          "description": "Delete Designation Category",
+          "operationId": "deleteDesignationCategory",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/import/medicines":{
+        "post": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "New Medicine With Csv",
+          "description": "New Medicine With Csv",
+          "operationId": "newmedicineCsv",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CsvMedicine"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CsvMedicine"
+                }
+              }
+            },
+            "description": "New Medicine",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/symptoms/body":{
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Symptoms Listing",
+          "description": "Symptoms Listing",
+          "operationId": "symptoms",
+          
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/medicine": {
+        "post": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "New Medicine",
+          "description": "New Medicine",
+          "operationId": "newmedicine",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateMedicine"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateMedicine"
+                }
+              }
+            },
+            "description": "New Medicine",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Medicine List",
+          "description": "Medicine List",
+          "operationId": "medicineList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Update Medicine",
+          "description": "Update Medicine",
+          "operationId": "updateMedicine",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateMedicine"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateMedicine"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Delete Medicine",
+          "description": "Delete Medicine",
+          "operationId": "deleteMedicine",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteMedicines"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteMedicines"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/designations/{id}":{
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "All Designation Listing",
+          "description": "All Designation Listing",
+          "operationId": "designationListing",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Medicine Id",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/notes/{id}":{
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "All Notes Listing",
+          "description": "All Notes Listing",
+          "operationId": "notesListing",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Medicine Id",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/medicine/{medicine_id}":{
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Medicine Detail",
+          "description": "Medicine Detail",
+          "operationId": "medicineDetail",
+          "parameters": [
+            {
+              "name": "medicine_id",
+              "in": "path",
+              "description": "Medicine Id",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "designation_id",
+              "in": "query",
+              "description": "Designation Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "language_id",
+              "in": "query",
+              "description": "Language id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/cats-list":{
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Cat List",
+          "description": "Cat List",
+          "operationId": "catList",
+          "parameters": [
+            {
+              "name": "gender",
+              "in": "query",
+              "description": "1-Female 2-Male",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "body_part_id",
+              "in": "query",
+              "description": "Body Part Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }   
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/special-instruction":{
+        "put": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Update Special Instructions",
+          "description": "Update Special Instructions",
+          "operationId": "updateSpecialInstructions",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecialInstructions"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecialInstructions"
+                }
+              }
+            }
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      
+      "/enquiry": {
+        "get": {
+          "tags": [
+            "Enquiry"
+          ],
+          "summary": "Enquiry List",
+          "description": "Enquiry List",
+          "operationId": "enquiryList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "path",
+              "description": "Page Count",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search Key",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+            
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "Enquiry"
+          ],
+          "summary": "Enquiry Reply",
+          "description": "Enquiry Reply",
+          "operationId": "enquiryReply",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplyEnquiry"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplyEnquiry"
+                }
+              }
+            }
+          }, 
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Enquiry"
+          ],
+          "summary": "Delete Enquiry",
+          "description": "Delete Enquiry",
+          "operationId": "deleteEnquiry",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/question": {
+        "get": {
+          "tags": [
+            "Question"
+          ],
+          "summary": "Question List",
+          "description": "Question List",
+          "operationId": "questionList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "search_key",
+              "in": "query",
+              "description": "Search ",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Question"
+          ],
+          "summary": "Delete Question",
+          "description": "Delete Question",
+          "operationId": "deleteQuestion",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/question/{id}": {
+        "get": {
+          "tags": [
+            "Question"
+          ],
+          "summary": "Question Detail",
+          "description": "Question Detail",
+          "operationId": "questionDetail",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Question Id",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/notification": {
+        "post": {
+          "tags": [
+            "Notification"
+          ],
+          "summary": "Send Notification",
+          "description": "Type 0-For All Users ,1-For Selected Users,2-for category or subcategory",
+          "operationId": "sendNotification",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostNotification"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostNotification"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/faq": {
+        "post": {
+          "tags": [
+            "Faq"
+          ],
+          "summary": "Add New Faq",
+          "description": "Add New Faq",
+          "operationId": "newFaq",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFaq"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFaq"
+                }
+              }
+            },
+            "description": "New Faq",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Faq"
+          ],
+          "summary": "Faq List",
+          "description": "Faq List",
+          "operationId": "faqList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Faq"
+          ],
+          "summary": "Update Faq",
+          "description": "Update Faq",
+          "operationId": "faqUpdate",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateFaq"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateFaq"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Faq"
+          ],
+          "summary": "Delete Faq",
+          "description": "Delete Faq",
+          "operationId": "deleteFaq",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDisease"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      },
+      "/symptoms": {
+        "post": {
+          "tags": [
+            "Symptom"
+          ],
+          "summary": "Add New Symptom",
+          "description": "Add New Symptom",
+          "operationId": "newSymptom",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSymptom"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSymptom"
+                }
+              }
+            },
+            "description": "New Symptom",
+            "required": true
+          },
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "Symptom"
+          ],
+          "summary": "Symptom List",
+          "description": "Symptom List",
+          "operationId": "symptomList",
+          "parameters": [
+            {
+              "name": "page_count",
+              "in": "query",
+              "description": "Page Count",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Symptom"
+          ],
+          "summary": "Update Symptom",
+          "description": "Update Symptom",
+          "operationId": "symptomUpdate",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SymptomUpdate"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SymptomUpdate"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Symptom"
+          ],
+          "summary": "Delete Symptom",
+          "description": "Delete Symptom",
+          "operationId": "symptomDelete",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteSymptom"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteSymptom"
+                }
+              }
+            }
+          },  
+          "responses": {},
+          "security":[
+            {
+              "bearerAuth":[]
+            }
+          ]
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    },
+    "servers": [
+      {
+        "url": "http://167.71.197.68:3000/admin"
+      },
+      {
+        "url": "http://localhost:3000/admin"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "schemas": {
+        "ChangePassword":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "old_password": {
+              "type": "string"
+            },
+            "new_password": {
+              "type": "string"
+            }
+          }
+        },
+        "Login": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "UserUpdate":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "status": {
+              "type": "integer"
+            },
+            "user_id":{
+              "type": "integer"
+            }
+          }
+        },
+        "CreateDisease":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          } 
+        },
+        "UpdateDisease":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "id":{
+              "type": "integer"
+            }
+          } 
+        },
+        "DeleteDisease":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type": "integer"
+            }
+          }
+        },
+        "CreateBodyParts":{
+          "type": "object",
+          "required": [],
+          "properties": {
+
+            "name": {
+              "type": "string"
+            },
+            "image":{
+              "type": "string"
+            },
+            "gender":{
+              "type":"integer"
+            }
+          }
+        },
+        "CsvMedicine":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "medicines":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/CsvArray"
+              }
+            }
+          }  
+        },
+        "CsvArray":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "image":{
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "category_id":{
+              "type": "integer"
+            },
+            "system_id":{
+              "type": "integer"
+            },
+            "body_part_id":{
+              "type":"integer"
+            },
+            "drug_form":{
+              "type":"string"
+            },
+            "generic_id":{
+              "type":"integer"
+            },
+            "brand_id":{
+              "type":"integer"
+            },
+            "indication_id":{
+              "type": "integer"
+            },
+            "symptom_id":{
+              "type": "integer"
+            },
+            "designation":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/DesignationBody"
+              }
+            },
+            "classification":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/ClassificationBody"
+              }
+            }
+          }
+        },
+        "DeleteMedicines":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "medicine_id":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/DeleteId"
+              }
+            }
+          }
+        },
+        "DeleteId":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type": "integer"
+            }
+          }  
+        },
+        "CreateMedicine":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "image":{
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "category_id":{
+              "type": "integer"
+            },
+            "system_id":{
+              "type": "integer"
+            },
+            "body_part_id":{
+              "type": "integer"
+            },
+            "drug_form":{
+              "type":"string"
+            },
+            "generic_id":{
+              "type":"integer"
+            },
+            "brand_id":{
+              "type":"integer"
+            },
+            "indication_id":{
+              "type": "integer"
+            },
+            "symptoms":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/SymptomsBody"
+              }
+            },
+            "designation":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/DesignationBody"
+              }
+            },
+            "classification":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/ClassificationBody"
+              }
+            }
+          } 
+        },
+        "BodyParts":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "ReplyEnquiry":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "enquiry_id":{
+              "type":"integer"
+            },
+            "email":{
+              "type":"string"
+            },
+            "subject":{
+              "type":"string"
+            },
+            "body":{
+              "type":"string"
+            }
+          }
+        },
+        "SymptomsBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "symptom_id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "UpdateSymptomsBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "symptom_id":{
+              "type":"integer"
+            },
+            "medicine_symptom_id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "UpdateMedicine":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "image":{
+              "type": "string"
+            },
+            "medicine_id":{
+              "type":"integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "category_id":{
+              "type": "integer"
+            },
+            "system_id":{
+              "type": "integer"
+            },
+            "body_part_id":{
+              "type":"integer"
+            },
+            "drug_form":{
+              "type":"string"
+            },
+            "symptom_id":{
+              "type":"integer"
+            },
+            "generic_id":{
+              "type":"integer"
+            },
+            "brand_id":{
+              "type":"integer"
+            },
+            "indication_id":{
+              "type": "integer"
+            },
+            "designation":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/DesignationBody"
+              }
+            },
+            "symptoms":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/UpdateSymptomsBody"
+              }
+            },
+            "classification":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/ClassificationBody"
+              }
+            }
+          } 
+        },
+        "DefaultDesignationBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            
+            "special_notes":{
+              "type":"string"
+            },
+            "language_id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "DesignationBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "notes":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/DefaultDesignationBody"
+              }
+            }
+          }  
+        },
+        "ClassificationBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "classification":{
+              "type":"string"
+            },
+            "language_id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "IndicationBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "indication":{
+              "type":"string"
+            },
+            "langauge_id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "UpdateBodyParts":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "image":{
+              "type": "string"
+            },
+            "gender":{
+              "type":"integer"
+            }
+          }
+        },
+        "PostNotification":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "type": {
+              "type": "integer"
+            },
+            "cat_id":{
+              "type": "integer"
+            },
+            "sub_cat_id":{
+              "type":"integer"
+            },
+            "subject":{
+              "type": "string"
+            },
+            "message":{
+              "type":"string"
+            }
+          }
+        },
+        "SpecialInstructions":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "CreateFaq":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "question":{
+              "type":"string"
+            },
+            "answer": {
+              "type": "string"
+            }
+          }
+        },
+        "UpdateFaq":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "question":{
+              "type":"string"
+            },
+            "answer": {
+              "type": "string"
+            }
+          }
+        },
+        "CreateSubCategory":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "cat_id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"string"
+            }
+          }
+        },
+        "UpdateSubCategory":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "cat_id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"string"
+            }
+          }
+        },
+        "CreateDesignation":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "designation_category_id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"string"
+            }
+          }
+        },
+        "UpdateDesignation":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "designation_category_id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"string"
+            }
+          }
+        },
+        "CreateSymptom":{
+          "type": "object",
+          "required": [],
+          "properties": {
+           
+            "body_part_id":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/BodyPartBody"
+              }
+            },
+            "symptom":{
+              "type": "array",
+              "xml": {
+                "name": "tag",
+                "wrapped": true
+              },
+              "items": {
+                "$ref": "#/components/schemas/SymptomBody"
+              }
+            }
+          }
+        },
+        "BodyPartBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id":{
+              "type":"integer"
+            }
+          }  
+        },
+        "SymptomBody":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "name":{
+              "type":"string"
+            }
+          }  
+        },
+        "SymptomUpdate":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "translation_id":{
+              "type":"integer"
+            },
+            "body_part_id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"integer"
+            }
+          }
+        },
+        "DeleteSymptom":{
+          "type": "object",
+          "required": [],
+          "properties": {
+            "symptom_id":{
+              "type":"integer"
+            }
+          }
+        },
+        "ApiResponse": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }

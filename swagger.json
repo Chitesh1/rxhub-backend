@@ -1,0 +1,1122 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Swagger Doc For Rxhub",
+    "version": "1.0.0",
+    "title": "Swagger Rxhub",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Module",
+      "externalDocs": {}
+    },
+    {
+      "name": "Medicine",
+      "description": "Medicine Module",
+      "externalDocs": {}
+    }
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add a new user to the db",
+        "description": "",
+        "operationId": "signup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Signup"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Signup"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {}
+      }
+    },
+    "/upload":{
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "uploads an file",
+        "description": "",
+        "operationId": "uploadFile",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "description": "file to upload",
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login User",
+        "description": "Login",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          },
+          "description": "Login",
+          "required": true
+        },
+        "responses": {}
+      }
+    },
+    "/password/forgot": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Forgot Password",
+        "description": "Forgot Password Api",
+        "operationId": "forgotPass",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPassword"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPassword"
+              }
+            }
+          },
+          "description": "ForgotPassword",
+          "required": true
+        },
+        "responses": {}
+      }
+    },
+    "/password/reset": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Reset Password",
+        "description": "Reset Password Api",
+        "operationId": "resetPass",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            }
+          },
+          "description": "Reset Password",
+          "required": true
+        },
+        "responses": {}
+      }
+    },
+    "/password/change": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Change Password",
+        "description": "Change Password Api",
+        "operationId": "changePass",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePassword"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePassword"
+              }
+            }
+          },
+          "description": "Change Password",
+          "required": true
+        },
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/profile": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Edit User Details",
+        "description": "Edit User Details",
+        "operationId": "edituserdetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfile"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfile"
+              }
+            }
+          },
+          "description": "User Details",
+          "required": true
+        },
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get User Details",
+        "description": "Get User Details",
+        "operationId": "getuserdetails",
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/designations": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "List All Designations According to language",
+        "description": "List All Designations According to language Language:1-English,2-Arabic,3-Urdu,4-Hindi",
+        "operationId": "listdesignations",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "ID of language to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/systems": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Drug By System",
+        "description": "Drug By System",
+        "operationId": "medicineSystem",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search By Keyword",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/brands": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Drug By Brand",
+        "description": "Drug By Brand",
+        "operationId": "drugsBrand",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search By Keyword",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/diseases": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Drug By Disease",
+        "description": "Drug By Disease",
+        "operationId": "medicineDisease",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search By Keyword",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/body-parts": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Symptoms Checker",
+        "description": "Symptoms Checker",
+        "operationId": "symptomsChecker",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "description": "1-female 2-male",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/body-part/symptoms": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Symptoms According to Body Parts",
+        "description": "Symptoms According to Body Parts",
+        "operationId": "symptomsbody-part",
+        "parameters": [
+          {
+            "name": "body_part_id",
+            "in": "query",
+            "description": "Body Part Id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/generic-names": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Generic Names",
+        "description": "Generic Names",
+        "operationId": "genericNames",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search By Keyword",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/medicine/{medicine_id}": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Detail of Medicine",
+        "description": "Detail of Medicine",
+        "operationId": "medicinedetail",
+        "parameters": [
+          {
+            "name": "medicine_id",
+            "in": "path",
+            "description": "Id of Medicine",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/medicines": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Listing of Medicines",
+        "description": "Listing of Medicines",
+        "operationId": "listingMedicine",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "new",
+            "in": "query",
+            "description": "if set 1 will get new medicines Listing",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "alphabet",
+            "in": "query",
+            "description": "Sort By A-Z Medicine Listing",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }, {
+            "name": "system_id",
+            "in": "query",
+            "description": "Drug By System Medicine Listing",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }, 
+          {
+            "name": "brand_id",
+            "in": "query",
+            "description": "Drug By Brand Medicine Listing",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "disease_id",
+            "in": "query",
+            "description": "Drug By Disease Medicine Listing",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "generic_id",
+            "in": "query",
+            "description": "Drug By Generic Names Listing",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search By Keyword Will Work With Various Category if set",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "symptom_id",
+            "in": "query",
+            "description": "Medicines By Symptoms",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/searched-medicines": {
+      "get": {
+        "tags": [
+          "Medicine"
+        ],
+        "summary": "Recently Searched Medicines",
+        "description": "Recently Searched Medicines",
+        "operationId": "recentMedicines",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/faqs": {
+      "get": {
+        "tags": [
+          "Faq"
+        ],
+        "summary": "Faq Listing",
+        "description": "Faq Listing",
+        "operationId": "faqList",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_count",
+            "in": "query",
+            "description": "Page Count",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/questions": {
+      "get": {
+        "tags": [
+          "Faq"
+        ],
+        "summary": "Question Listing",
+        "description": "Question Listing",
+        "operationId": "questionlisting",
+        "parameters": [
+          {
+            "name": "language_id",
+            "in": "query",
+            "description": "1-English,2-Arabic,3-Urdu,4-Hindi",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/inquiry": {
+      "post": {
+        "tags": [
+          "Inquiry"
+        ],
+        "summary": "Inquiry Post",
+        "description": "Inquiry Post",
+        "operationId": "inquiryPost",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Enquiry"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Enquiry"
+              }
+            }
+          },
+          "description": "Enquiry Posting",
+          "required": true
+        },
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    },
+    "/faq": {
+      "post": {
+        "tags": [
+          "Faq"
+        ],
+        "summary": "Post Question",
+        "description": "Post Question",
+        "operationId": "questionpost",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            }
+          },
+          "description": "Question Posting",
+          "required": true
+        },
+        "responses": {}
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Logout User",
+        "description": "Logout User",
+        "operationId": "logoutuser",
+        "responses": {},
+        "security":[
+          {
+            "bearerAuth":[]
+          }
+        ]
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://167.71.197.68:3000/api"
+    },
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Signup": {
+        "type": "object",
+        "required": ["name","email","password"],
+        "properties": {
+          "image":{
+            "type":"string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "fb_id": {
+            "type": "string"
+          },
+          "google_id": {
+            "type": "string"
+          },
+          "apple_id": {
+            "type": "string"
+          },
+          "fcm_id": {
+            "type": "string"
+          },
+          "device_type": {
+            "type": "string"
+          },
+          "device_token": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Pet"
+        }
+      },
+      "ChangePassword":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "old_password": {
+            "type": "string"
+          },
+          "new_password": {
+            "type": "string"
+          }
+        }
+      },
+      "BasicInfo": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "mobile_number": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          },
+          "gender": {
+            "type": "integer"
+          },
+          "designation_id": {
+            "type": "integer"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "company_name": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "fcm_id": {
+            "type": "string"
+          },
+          "device_type": {
+            "type": "integer"
+          },
+          "device_token": {
+            "type": "string"
+          }
+        }
+      },
+      "ForgotPassword": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "ResetPassword": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateProfile": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "profile_pic": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "mobile_number": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          },
+          "gender": {
+            "type": "integer"
+          },
+          "designation_id": {
+            "type": "integer"
+          },
+          "company_name": {
+            "type": "string"
+          },
+          "is_notification_enable":{
+            "type":"integer"
+          }
+        }
+      },
+      "Designations":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "language_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "MedicineListing":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "type":{
+            "type":"integer"
+          },
+          "language_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "MedicineCategoriesInfo":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "id":{
+            "type":"integer"
+          },
+          "language_id":{
+            "type":"integer"
+          },
+          "type":{
+            "type":"integer"
+          }
+        }
+      },
+      "Enquiry":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name":{
+            "type":"string"
+          },
+          "email":{
+            "type":"string"
+          },
+          "message":{
+            "type":"string"
+          },
+          "mobile_number":{
+            "type":"string"
+          }
+        }
+      },
+      "MedicineDetail":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "medicine_id":{
+            "type":"integer"
+          },
+          "language_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "Faq":{
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name":{
+            "type":"string"
+          },
+          "user_id":{
+            "type":"integer"
+          },
+          "mobile_number":{
+            "type":"string"
+          },
+          "email":{
+            "type":"string"
+          },
+          "question":{
+            "type":"string"
+          },
+          "designation_id":{
+            "type":"integer"
+          },
+          "question_description":{
+            "type":"string"
+          },
+          "company_name":{
+            "type":"string"
+          },
+          "language_id":{
+            "type":"integer"
+          }
+        } 
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
